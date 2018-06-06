@@ -6,7 +6,7 @@
 
 ### 具体分析
 
-1. 父组件 的生命周期
+1. 组件 的生命周期
     - 第一步：defaultProps
     - 第二步：constructor 构造函数
     - 第三步：组件将要加载 componentWillMount
@@ -15,7 +15,25 @@
     - 第六步：组件是否应该更新shouldComponentUpdate
     - 第七步：组件将要更新 componentWillUpdate
     - 第八步：组件更新完成 componentDidUpdate
-    - 第九步：
+
+2. 父组件和子组件的结合的生命周期
+    - 1.父亲：constructor 构造函数
+    - 2.父亲：组件将要加载 componentWillMount
+    - 3.父亲：render
+    - 4.儿子：childcomponentWillMount
+    - 5.儿子：child render
+    - 6.儿子：childcomponentDidMount
+    - 7.父亲：组件加载完成 componentDidMount
+    
+3. 点击加加按钮后，更新数据时
+    - 1.父亲：组件是否应该更新 shouldComponentUpdate
+    - 2.父亲：组件将要更新 componentWillUpdate
+    - 3.父亲：render
+    - 4.儿子：childcomponentWillReceiveProps
+    - 5.儿子：child render
+    - 6.儿子：组件更新完成 componentDidUpdate
+    
+   
     
     ```
     // 父组件
