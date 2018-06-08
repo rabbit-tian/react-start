@@ -11,4 +11,5 @@
 ### 数据存储
 1. localStorageh中存
     - `localStorage.setItem("messages", JSON.stringify(messages))`
+2. 在页面加载完 componentWillMount 中拿数据
 
