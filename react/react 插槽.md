@@ -26,6 +26,7 @@ class Children extends Component {
 ReactDOM.render(<Children>
     <div>汉堡</div>
     <div>汉堡</div>
+    <div>汉堡</div>
 </Children>,document.getElementById('root'));
 ```
 
