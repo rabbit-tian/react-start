@@ -71,4 +71,35 @@ ReactDOM.render(
     - 注意，组件类的第一个字母必须大写，否则会报错，比如HelloMessage不能写成helloMessage。另外，组件类只能包含一个顶层标签，否则也会报错。
     - 组件的用法与原生的 HTML 标签完全一致，可以任意加入属性，比如 <HelloMessage name="John"> ，就是 HelloMessage 组件加入一个 name 属性，值为 John。组件的属性可以在组件类的 this.props 对象上获取，比如 name 属性就可以通过 this.props.name 读取。
 
+### this.props.children
+1. this.props 对象的属性与组件的属性一一对应，但是有一个例外，就是 this.props.children 属性。它表示组件的所有子节点
+    
+    ```
+    var NotesList = React.createClass({
+      render: function() {
+        return (
+          <ol>
+          {
+            React.Children.map(this.props.children, function (child) {
+              return <li>{child}</li>;
+            })
+          }
+          </ol>
+        );
+      }
+    });
+    
+    ReactDOM.render(
+      <NotesList>
+        <span>hello</span>
+        <span>world</span>
+      </NotesList>,
+      document.body
+    );
+    ```
+    - 上面代码的 NoteList 组件有两个 span 子节点，它们都可以通过 this.props.children 读取
+    - 这里需要注意， this.props.children 的值有三种可能：如果当前组件没有子节点，它就是 undefined ;如果有一个子节点，数据类型是 object ；如果有多个子节点，数据类型就是 array 。所以，处理 this.props.children 的时候要小心。
+    - React 提供一个工具方法 React.Children 来处理 this.props.children 。我们可以用 React.Children.map 来遍历子节点，而不用担心 this.props.children 的数据类型是 undefined 还是 object。
+
+### PropTypes
 
