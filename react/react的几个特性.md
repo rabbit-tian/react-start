@@ -216,6 +216,47 @@ ReactDOM.render(
 1. 用户在表单填入的内容，属于用户跟组件的互动，所以不能用 this.props 读取
     
     ```
+    var Input = React.createClass({
+      getInitialState: function() {
+        return {value: 'Hello!'};
+      },
+      handleChange: function(event) {
+        this.setState({value: event.target.value});
+      },
+      render: function () {
+        var value = this.state.value;
+        return (
+          <div>
+            <input type="text" value={value} onChange={this.handleChange} />
+            <p>{value}</p>
+          </div>
+        );
+      }
+    });
+    
+    ReactDOM.render(<Input/>, document.body);
     
     ```
+    - 上面代码中，文本输入框的值，不能用 this.props.value 读取，而要定义一个 onChange 事件的回调函数，通过 event.target.value 读取用户输入的值。textarea 元素、select元素、radio元素都属于这种情况
+
+
+### 组件的生命周期
+1. 组件的生命周期分成三个状态：
+    - Mounting：已插入真实 DOM
+    - Updating：正在被重新渲染
+    - Unmounting：已移出真实 DOM
+
+2. React 为每个状态都提供了两种处理函数，will 函数在进入状态之前调用，did 函数在进入状态之后调用，三种状态共计五种处理函数。
+
+    - componentWillMount()
+    - componentDidMount()
+    - componentWillUpdate(object nextProps, object nextState)
+    - componentDidUpdate(object prevProps, object prevState)
+    - componentWillUnmount()
+
+3. 此外，React 还提供两种特殊状态的处理函数。
+    - componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用
+    - shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用
+
+4. 
 
